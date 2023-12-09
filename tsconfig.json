@@ -5,7 +5,13 @@
     "allowJs": true,
     "target": "ES5",
     "outDir": "./build",
+    "module": "ESNext",
     "moduleResolution": "Node",
-    "lib": ["ES2015", "DOM", "DOM.Iterable"]
+    "lib": ["ES2015", "DOM", "DOM.Iterable"],
+    "esModuleInterop": true,
+    "noImplicitAny": true
+  },
+  "ts-node": {
+    "esm": true
   }
 }
