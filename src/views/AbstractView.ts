@@ -1,7 +1,8 @@
 export default class {
+  title: string;
   constructor() {}
 
-  setTitle(title) {
+  setTitle(title: string) {
     document.title = title;
   }
   getTemplate() {
