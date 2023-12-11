@@ -1,13 +1,10 @@
-import AbstractView from "./AbstractView.js";
+import { Data, AbstractView } from "./AbstractView";
 
 export default class Article extends AbstractView {
   constructor() {
     super();
-    const target = document.querySelector("#contents");
-    this.$newEl = target.cloneNode(true);
-    this.$newEl.innerHTML = this.getTemplate();
-    target.replaceWith(this.$newEl);
   }
+
   getTemplate() {
     return `
       <div class="article__inner">
@@ -22,7 +19,8 @@ export default class Article extends AbstractView {
       </div>
     `;
   }
-  getData(data) {
+
+  getData(data: Data) {
     this.setTitle(data["title"]);
 
     const div = this.$newEl.querySelector(".article__box");
@@ -33,7 +31,9 @@ export default class Article extends AbstractView {
       <div class="article__info">
         <div class="article__info-text">
           <span class="article__author">${data["author"]}</span>
-          <span class="article__date">${data["date"]}</span>
+          <span class="article__date">${new Date(
+            data["date"]
+          ).toLocaleDateString()}</span>
         </div>
       </div>
       <div class="article__contents">${data["content"]}</div>

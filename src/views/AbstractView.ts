@@ -1,11 +1,26 @@
-export default class {
+export interface Data {
+  type: string;
+  id: string;
+  author: string;
+  img: string;
   title: string;
-  constructor() {}
+  desc: string;
+  date: number;
+  content: string;
+}
+
+export abstract class AbstractView {
+  protected $newEl: HTMLElement;
+  constructor() {
+    const target = document.querySelector("#contents");
+    this.$newEl = target.cloneNode(true) as HTMLElement;
+    this.$newEl.innerHTML = this.getTemplate();
+    target.replaceWith(this.$newEl);
+  }
 
   setTitle(title: string) {
     document.title = title;
   }
-  getTemplate() {
-    return "";
-  }
+  abstract getTemplate(): string;
+  abstract getData(data: Data | Data[]): Element | HTMLUListElement;
 }
