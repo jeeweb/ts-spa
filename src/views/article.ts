@@ -20,11 +20,10 @@ export default class Article extends AbstractView {
     `;
   }
 
-  getData(data: Data) {
+  getData(data: Data): Element {
     this.setTitle(data["title"]);
 
-    const div = this.$newEl.querySelector(".article__box");
-
+    const div = this.$newEl.querySelector(".article__box")!;
     div.innerHTML = `
       <div class="article__img"><img src="${data["img"]}"></div>
       <h3>${data["title"]}</h3>

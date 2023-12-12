@@ -10,12 +10,14 @@ export interface Data {
 }
 
 export abstract class AbstractView {
-  protected $newEl: HTMLElement;
+  protected $newEl!: HTMLElement;
   constructor() {
     const target = document.querySelector("#contents");
-    this.$newEl = target.cloneNode(true) as HTMLElement;
-    this.$newEl.innerHTML = this.getTemplate();
-    target.replaceWith(this.$newEl);
+    if (target !== null) {
+      this.$newEl = target.cloneNode(true) as HTMLElement;
+      this.$newEl.innerHTML = this.getTemplate();
+      target.replaceWith(this.$newEl);
+    }
   }
 
   setTitle(title: string) {

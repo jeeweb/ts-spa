@@ -14,7 +14,7 @@ export default class Design extends AbstractView {
     `;
   }
   getData(data: Data[]) {
-    const list = this.$newEl.querySelector("ul");
+    const list = this.$newEl.querySelector("ul")!;
 
     list.innerHTML = `${data
       .map(
