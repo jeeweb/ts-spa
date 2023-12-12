@@ -9,7 +9,7 @@ const routes = [
   { path: "/article/:id", view: Article },
 ];
 
-const pathToRegex = (path) =>
+const pathToRegex = (path: string) =>
   new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
 const router = () => {
@@ -17,13 +17,15 @@ const router = () => {
   const pathMatch = routes.map((route) => {
     return {
       route: route,
-      result: pathname.match(pathToRegex(route.path)),
+      result: pathname.match(pathToRegex(route.path))!,
     };
   });
   const match = pathMatch.find((el) => el.result !== null);
   const controller = new Controller();
-  controller.render(match);
-  window.scrollTo(0, 0); // 화면 이동시 상단으로 이동
+  if (match !== undefined) {
+    controller.render(match);
+    if (match.result[1] !== undefined) window.scrollTo(0, 0);
+  }
 };
 
 export default router;

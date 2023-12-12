@@ -1,22 +1,22 @@
-import base from "./views/base.js";
-import router from "./router.js";
+import base from "./views/base";
+import router from "./router";
 
 const currentDomain = location.origin;
-const app = document.querySelector("#app");
+const app = document.querySelector("#app")!;
 app.innerHTML = base;
 
-const navigateTo = (url) => {
+const navigateTo = (url: string) => {
   const urlDomain = url.split("/")[0] + "//" + url.split("/")[2];
   if (urlDomain !== currentDomain) {
     location.href = url;
   }
-  window.history.pushState(null, null, url);
+  window.history.pushState(null, "", url);
   router();
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.body.addEventListener("click", (e) => {
-    const target = e.target.closest("a");
+  document.body.addEventListener("click", (e: MouseEvent) => {
+    const target = (e.target as HTMLElement).closest("a");
 
     if (!(target instanceof HTMLAnchorElement)) return;
 
