@@ -1,7 +1,7 @@
-import Controller from "./controller.js";
-import Tech from "./views/tech.js";
-import Article from "./views/article.js";
-import Design from "./views/design.js";
+import Controller from "./controller";
+import Tech from "./views/tech";
+import Article from "./views/article";
+import Design from "./views/design";
 
 const routes = [
   { path: "/", view: Tech },
