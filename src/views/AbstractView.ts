@@ -1,4 +1,4 @@
-export interface Data {
+export interface articleInfo {
   type: string;
   id: string;
   author: string;
@@ -24,5 +24,7 @@ export abstract class AbstractView {
     document.title = title;
   }
   abstract getTemplate(): string;
-  abstract getData(data: Data | Data[]): Element | HTMLUListElement;
+  abstract getData(
+    data: articleInfo | articleInfo[]
+  ): Element | HTMLUListElement;
 }

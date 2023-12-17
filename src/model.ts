@@ -1,4 +1,4 @@
-export interface Data {
+export interface articleInfo {
   type: string;
   id: string;
   author: string;
@@ -14,7 +14,7 @@ export default class Model {
     this.showLodingSpinner();
     this.fetchData();
   }
-  async fetchData(): Promise<Data[]> {
+  async fetchData(): Promise<articleInfo[]> {
     return await fetch("/public/db.json")
       .then((res) => res.json())
       .catch((error: Error) => console.log(error))

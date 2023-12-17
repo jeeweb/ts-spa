@@ -1,4 +1,4 @@
-import { Data, AbstractView } from "./AbstractView";
+import { articleInfo, AbstractView } from "./AbstractView";
 
 export default class Article extends AbstractView {
   constructor() {
@@ -20,7 +20,7 @@ export default class Article extends AbstractView {
     `;
   }
 
-  getData(data: Data): Element {
+  getData(data: articleInfo): Element {
     this.setTitle(data["title"]);
 
     const div = this.$newEl.querySelector(".article__box")!;

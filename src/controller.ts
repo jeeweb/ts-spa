@@ -1,19 +1,14 @@
-import Model, { Data } from "./model";
+import Model, { articleInfo } from "./model";
 import Tech from "./views/tech";
 import Design from "./views/design";
 import Article from "./views/article";
 import { page404 } from "./views/404";
 
 type Route = {
-  route:
-    | {
-        path: string;
-        view: typeof Tech;
-      }
-    | {
-        path: string;
-        view: typeof Article;
-      };
+  route: {
+    path: string;
+    view: typeof Tech | typeof Article;
+  };
   result: RegExpMatchArray | null;
 };
 
@@ -38,15 +33,17 @@ export default class Controller {
   }
 
   async getArticleById(id: string) {
-    await this.model.fetchData().then((data: Data[]) => {
+    await this.model.fetchData().then((data: articleInfo[]) => {
       const articleView = new Article();
       const article = data.find((item) => item.id === id);
       if (article !== undefined) articleView.getData(article);
     });
   }
   async getAllArticles(dataType: string) {
-    await this.model.fetchData().then((data: Data[]) => {
-      const articles = data.filter((item: Data) => item.type === dataType);
+    await this.model.fetchData().then((data: articleInfo[]) => {
+      const articles = data.filter(
+        (item: articleInfo) => item.type === dataType
+      );
       if (dataType === "tech" || dataType === "design")
         this.getView(dataType)!.getData(articles);
     });
