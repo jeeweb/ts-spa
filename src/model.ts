@@ -5,7 +5,7 @@ export interface articleInfo {
   img: string;
   title: string;
   desc: string;
-  date: number;
+  date: Date;
   content: string;
 }
 
